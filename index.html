@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -11,11 +11,15 @@
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: 'Inter', sans-serif;
       background: #fefae0;
       color: #2c2c2c;
+      display: flex;
+      flex-direction: column;
     }
+
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -27,6 +31,7 @@
       top: 0;
       z-index: 10;
     }
+
     .topbar .logo {
       font-weight: 700;
       font-size: 18px;
@@ -34,68 +39,95 @@
       align-items: center;
       gap: 8px;
     }
-    .topbar input[type="text"] {
-      padding: 6px 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 200px;
-    }
-    .topbar button {
-      padding: 6px 12px;
-      margin-left: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: #f7e1b5;
-      cursor: pointer;
-    }
+
     .topbar .nav-icons {
       display: flex;
       gap: 16px;
       align-items: center;
     }
+
     .container {
       display: flex;
+      height: 100vh;
     }
+
     .sidebar {
       width: 250px;
-      height: calc(100vh - 60px);
       background: #fdf6e3;
       padding: 20px;
       border-right: 1px solid #ddd;
+      transition: width 0.3s ease;
+      position: relative;
+      overflow-x: hidden;
     }
-    .sidebar h3 {
-      margin-bottom: 10px;
+
+    .sidebar.collapsed {
+      width: 70px;
     }
-    .sidebar p {
-      margin-bottom: 20px;
-      color: #555;
+
+    .sidebar h3,
+    .sidebar p,
+    .sidebar a {
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
+
+    .sidebar.collapsed h3,
+    .sidebar.collapsed p,
+    .sidebar.collapsed a {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-10px);
+    }
+
     .sidebar a {
       display: block;
       margin-bottom: 10px;
       color: #6b46c1;
       text-decoration: none;
     }
+
+    .toggle-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background-color: #7954d1;
+      color: white;
+      border: none;
+      border-radius: 10%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
     .main {
       flex: 1;
       padding: 40px;
+      overflow-y: auto;
     }
+
     .hero {
-      background: #fff;
+      background: #ebe28d;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
       margin-bottom: 40px;
     }
+
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 10px;
     }
+
     .hero p {
       font-size: 1.1rem;
       color: #444;
       margin-bottom: 20px;
     }
+
     .hero button {
       padding: 10px 20px;
       border: none;
@@ -105,13 +137,16 @@
       cursor: pointer;
       margin-right: 10px;
     }
+
     .section h2 {
       margin-bottom: 10px;
       color: #333;
     }
+
     .section ul {
       list-style: none;
     }
+
     .section ul li {
       padding: 10px 0;
       border-bottom: 1px solid #ddd;
@@ -120,41 +155,42 @@
   </style>
 </head>
 <body>
+
   <div class="topbar">
     <div class="logo">
-      <span>🗄</span> myportfolio.dev
-    </div>
-    <div>
-      <input type="text" placeholder="Search posts...">
-      <button>Go</button>
+      <span>💻</span> Revati Natu
     </div>
     <div class="nav-icons">
+      <span>📂 About</span>
       <span>📝 Notes</span>
       <span>📚 Blog</span>
       <span>💻 Projects</span>
-      <span>📂 About</span>
-      <span>🌞</span>
-      <span>🌸</span>
-      <span>🐙</span>
-      <span>🦋</span>
     </div>
   </div>
 
   <div class="container">
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
+      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
       <h3>About Me</h3>
-      <p>I'm <strong>Your Name</strong>, a software developer and ML enthusiast. Welcome to my digital space.</p>
+      <p style='text-align: justify;'>
+        I'm <strong>Revati Natu</strong>, an AI/ML developer passionate about blending logic with creativity to build intelligent and impactful solutions.
+      </p>
+
+      <br>
 
       <h3>Stay Connected</h3>
-      <a href="#">Email Newsletter</a>
       <a href="#">LinkedIn</a>
       <a href="#">GitHub</a>
+
+      <br>
 
       <h3>Guides</h3>
       <a href="#">Python for AI</a>
       <a href="#">React Notes</a>
       <a href="#">Linux Cheatsheet</a>
 
+      <br>
       <h3>Fun Stuff</h3>
       <a href="#">My Sketchbook</a>
       <a href="#">Built with GPT</a>
@@ -162,12 +198,10 @@
 
     <div class="main">
       <div class="hero">
-        <h1>Hey, I'm Your Name!</h1>
+        <h1>Hey, I'm Revati!</h1>
         <p>
-          I'm a software engineer, AI enthusiast, and creative coder. I've been building cool things for years and love sharing what I learn.
+         A passionate AI/ML enthusiast and creative problem solver. I enjoy building intelligent systems, from recommendation engines to real-time computer vision and NLP-based applications. With a strong foundation in Python, machine learning, and modern frameworks like scikit-learn, TensorFlow, and LangChain, I’m always exploring how to apply AI to real-world challenges. Whether it's through academic projects, self-driven research, or hands-on experiments, I’m driven by curiosity and a desire to make technology more meaningful and accessible.
         </p>
-        <button>About Me</button>
-        <button>Email Newsletter</button>
       </div>
 
       <div class="section">
@@ -189,5 +223,12 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+    }
+  </script>
+
 </body>
 </html>
