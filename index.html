@@ -12,14 +12,53 @@
       padding: 0;
     }
     body {
-      display: flex;
       font-family: 'Inter', sans-serif;
       background: #fefae0;
       color: #2c2c2c;
     }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fdf6e3;
+      padding: 12px 20px;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topbar .logo {
+      font-weight: 700;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar input[type="text"] {
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 200px;
+    }
+    .topbar button {
+      padding: 6px 12px;
+      margin-left: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f7e1b5;
+      cursor: pointer;
+    }
+    .topbar .nav-icons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .container {
+      display: flex;
+    }
     .sidebar {
       width: 250px;
-      height: 100vh;
+      height: calc(100vh - 60px);
       background: #fdf6e3;
       padding: 20px;
       border-right: 1px solid #ddd;
@@ -81,51 +120,73 @@
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <h3>About Me</h3>
-    <p>I'm <strong>Your Name</strong>, a software developer and ML enthusiast. Welcome to my digital space.</p>
-    
-    <h3>Stay Connected</h3>
-    <a href="#">Email Newsletter</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">GitHub</a>
-
-    <h3>Guides</h3>
-    <a href="#">Python for AI</a>
-    <a href="#">React Notes</a>
-    <a href="#">Linux Cheatsheet</a>
-
-    <h3>Fun Stuff</h3>
-    <a href="#">My Sketchbook</a>
-    <a href="#">Built with GPT</a>
+  <div class="topbar">
+    <div class="logo">
+      <span>🗄</span> myportfolio.dev
+    </div>
+    <div>
+      <input type="text" placeholder="Search posts...">
+      <button>Go</button>
+    </div>
+    <div class="nav-icons">
+      <span>📝 Notes</span>
+      <span>📚 Blog</span>
+      <span>💻 Projects</span>
+      <span>📂 About</span>
+      <span>🌞</span>
+      <span>🌸</span>
+      <span>🐙</span>
+      <span>🦋</span>
+    </div>
   </div>
 
-  <div class="main">
-    <div class="hero">
-      <h1>Hey, I'm Your Name!</h1>
-      <p>
-        I'm a software engineer, AI enthusiast, and creative coder. I've been building cool things for years and love sharing what I learn.
-      </p>
-      <button>About Me</button>
-      <button>Email Newsletter</button>
+  <div class="container">
+    <div class="sidebar">
+      <h3>About Me</h3>
+      <p>I'm <strong>Your Name</strong>, a software developer and ML enthusiast. Welcome to my digital space.</p>
+
+      <h3>Stay Connected</h3>
+      <a href="#">Email Newsletter</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+
+      <h3>Guides</h3>
+      <a href="#">Python for AI</a>
+      <a href="#">React Notes</a>
+      <a href="#">Linux Cheatsheet</a>
+
+      <h3>Fun Stuff</h3>
+      <a href="#">My Sketchbook</a>
+      <a href="#">Built with GPT</a>
     </div>
 
-    <div class="section">
-      <h2>Notes</h2>
-      <ul>
-        <li>Building StrumAI: Guitar to Chord ML</li>
-        <li>Year in Review: 2025 Highlights</li>
-        <li>React vs Vanilla CSS Battle</li>
-      </ul>
-    </div>
+    <div class="main">
+      <div class="hero">
+        <h1>Hey, I'm Your Name!</h1>
+        <p>
+          I'm a software engineer, AI enthusiast, and creative coder. I've been building cool things for years and love sharing what I learn.
+        </p>
+        <button>About Me</button>
+        <button>Email Newsletter</button>
+      </div>
 
-    <div class="section">
-      <h2>Blog</h2>
-      <ul>
-        <li>How I Made a Tweet Sentiment Classifier</li>
-        <li>Guide to Hosting Your Website on GitHub Pages</li>
-        <li>Deploying HuggingFace Models Locally</li>
-      </ul>
+      <div class="section">
+        <h2>Notes</h2>
+        <ul>
+          <li>Building StrumAI: Guitar to Chord ML</li>
+          <li>Year in Review: 2025 Highlights</li>
+          <li>React vs Vanilla CSS Battle</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Blog</h2>
+        <ul>
+          <li>How I Made a Tweet Sentiment Classifier</li>
+          <li>Guide to Hosting Your Website on GitHub Pages</li>
+          <li>Deploying HuggingFace Models Locally</li>
+        </ul>
+      </div>
     </div>
   </div>
 </body>
