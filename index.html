@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#fdf7ed] text-[#333] font-sans">
+
+  <!-- Navigation -->
+  <nav class="flex justify-between items-center px-6 py-4 border-b border-gray-300">
+    <div class="text-xl font-bold">demo.dev</div>
+    <div class="space-x-6 hidden md:block">
+      <a href="#" class="hover:underline">Notes</a>
+      <a href="#" class="hover:underline">Blog</a>
+      <a href="#" class="hover:underline">Projects</a>
+      <a href="#" class="hover:underline">About</a>
+    </div>
+  </nav>
+
+  <div class="flex flex-col md:flex-row max-w-7xl mx-auto mt-10 px-4">
+    <!-- Sidebar -->
+    <aside class="md:w-1/4 space-y-10 text-sm">
+      <div>
+        <h2 class="text-lg font-semibold">About Me</h2>
+        <p class="mt-2">I'm <span class="text-pink-600 font-semibold">Demo</span>, a software engineer and open-source fan. This is my digital garden. 🌱</p>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold">Stay Connected</h2>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#" class="text-blue-600 hover:underline">Email Newsletter</a></li>
+          <li><a href="#" class="text-blue-600 hover:underline">GitHub</a></li>
+          <li><a href="#" class="text-blue-600 hover:underline">RSS Feed</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold">Guides</h2>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#" class="hover:underline">macOS Setup</a></li>
+          <li><a href="#" class="hover:underline">CSS Guidebook</a></li>
+          <li><a href="#" class="hover:underline">React Architecture</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold">Fun Stuff</h2>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#" class="hover:underline">My Year in Review</a></li>
+          <li><a href="#" class="hover:underline">Building My First PC</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-semibold">Project Writeups</h2>
+        <ul class="mt-2 space-y-1">
+          <li><a href="#" class="hover:underline">Keyboard Accordion</a></li>
+          <li><a href="#" class="hover:underline">Chip-8 Emulator</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="md:w-3/4 md:pl-10 mt-10 md:mt-0 space-y-10">
+      <!-- Hero -->
+      <section class="bg-[#fff6ee] p-6 rounded-lg border border-pink-200 flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold mb-2">Hey, I'm Demo!</h1>
+          <p class="mb-4">I'm a software engineer and open-source creator. I've been making websites for over ten years!</p>
+          <div class="space-x-4">
+            <a href="#" class="inline-block bg-white text-pink-600 border border-pink-400 px-4 py-2 rounded shadow-sm hover:bg-pink-50">About Me</a>
+            <a href="#" class="inline-block bg-white text-pink-600 border border-pink-400 px-4 py-2 rounded shadow-sm hover:bg-pink-50">Email Newsletter</a>
+          </div>
+        </div>
+        <img src="assets/profile.svg" alt="Profile" class="w-28 hidden md:block">
+      </section>
+
+      <!-- Notes -->
+      <section>
+        <div class="flex justify-between items-center mb-2">
+          <h2 class="text-2xl font-semibold">Notes</h2>
+          <a href="#" class="text-blue-600 hover:underline">See All</a>
+        </div>
+        <p class="text-sm mb-4 text-gray-600">Life, music, projects, and everything else.</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-pink-600 hover:underline">Year in Review: 2024 into 2025</a></li>
+          <li><a href="#" class="text-pink-600 hover:underline">Redesign: Version 7.0</a></li>
+          <li><a href="#" class="text-pink-600 hover:underline">Year in Review: 2023 into 2024</a></li>
+        </ul>
+      </section>
+
+      <!-- Blog -->
+      <section>
+        <div class="flex justify-between items-center mb-2">
+          <h2 class="text-2xl font-semibold">Blog</h2>
+          <a href="#" class="text-blue-600 hover:underline">See All</a>
+        </div>
+        <p class="text-sm mb-4 text-gray-600">Guides, references, and tutorials.</p>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-pink-600 hover:underline">Using ECharts in React</a></li>
+          <li><a href="#" class="text-pink-600 hover:underline">Keyboard Shortcut Hook in React</a></li>
+          <li><a href="#" class="text-pink-600 hover:underline">Sticky Horizontal HTML Table</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
