@@ -6,20 +6,22 @@
   <title>Revati Natu</title>
   <style>
     :root {
-      --primary: #255957;     
-      --secondary: #ffb01d;   
-      --accent: #F9DC5C;
-      --bg: #e6c9cb;
-      --bgcard: #3070c9;
-      --header: #255957; 
-      --sidebar: #FA198B;    
-      --text: #255957;
+      --primary: #257f7c;     
+      --secondary: #30c9bf;
+      --accent: #000000;
+      --bg: #FDF7FA;
+      --bgcard: #ef52a1;
+      --header: #257f7c; 
+      --sidebar: #c567ea;  
+      --linkcol: #efa6fc;  
+      --text: #216e6b;
       --cardtext: #efe1e1;    
-      --connbg: #7e9cc6;  
+      --connbg: #ef52a1;  
       --white: #fff;          
       --side-width: 220px;  
       --side-min: 60px;
     }
+
 
     html, body {
       height: 100%;
@@ -81,6 +83,7 @@
     }
     .header .resume-btn:hover { filter: brightness(1.1); }
 
+
     /* Sidebar */
     .sidebar {
       position: fixed;
@@ -104,7 +107,7 @@
       display: flex; flex-direction: column; gap: 10px; margin: 10px;
     }
     .sidebar .links a {
-      background: var(--header);
+      background: var(--linkcol);
       color: var(--white);
       border: none; border-radius: 4px;
       padding: 12px 16px; text-decoration: none;
@@ -114,7 +117,7 @@
       text-align: left;
     }
     .sidebar .links a:hover {
-      background: var(--secondary); color: var(--sidebar);
+      background: var(--secondary); color: var(--white);
     }
     .sidebar .socials {
       display: flex; flex-direction: column; gap: 12px;
@@ -144,15 +147,13 @@
       flex: 1;
       height: 100vh;
       overflow-y: auto;
-      scroll-snap-type: y mandatory;
     }
     .sidebar.collapsed ~ .main {
       margin-left: var(--side-min);
     }
-    /* Each section uses snap-y */
+    /* Each section */
     section {
       min-height: 100vh;
-      scroll-snap-align: start;
       padding: 70px 20px 25px 20px;
       display: flex;
       flex-direction: column;
@@ -161,6 +162,7 @@
       border-bottom: 1px solid #ccc3;
       background: var(--bg);
     }
+
 
     @media (min-width: 601px) {
       .grid-list > .card:last-child:only-child,
@@ -173,6 +175,7 @@
       }
     }
 
+
     /* About section split with cartoon */
     .about-content {
       display: flex; gap: 10px; align-items: center; justify-content: space-between;
@@ -184,6 +187,7 @@
       border-radius: 8px;
       text-align: justify;
     }
+
 
     .about-cartoon { flex: 1; display: flex; text-align: justify;}
     .about-cartoon img {
@@ -315,6 +319,7 @@
       text-align: justify;
     }
 
+
     @media (max-width: 900px) {
       .sidebar {
         display: none !important;
@@ -335,8 +340,9 @@
       <a href="#experience">💼 </a>
       <a href="#projects">🚀 </a>
       <a href="#techstack">🛠️</a>
+      <a href ="beyondcode">💖</a>
       <a href="#connect">🔗 </a>
-      <a href="YOUR_RESUME_LINK.pdf" target="_blank" class="resume-btn">Resume</a>
+      <a href="RevatiNatu.pdf" target="_blank" class="resume-btn">Resume</a>
     </nav>
   </div>
   <!-- Sidebar -->
@@ -347,11 +353,12 @@
       <a href="#experience" title="Experience">💼 Experience</a>
       <a href="#projects" title="Projects">🚀 Projects</a>
       <a href="#techstack" title="Tech Stack">🛠️ Tech Stack</a>
+      <a href="#beyondcode" title="Beyond Code">💖 Beyond Code</a>
       <a href="#connect" title="Connect">🔗 Connect</a>
     </div>
     <div class="socials">
       <a href="https://github.com/Revati-N/" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />GitHub</a>
-      <a href="https://medium.com/@YOUR_ID" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png" alt="" />Medium</a>
+      <a href="https://medium.com/@revatisnatu" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png" alt="" />Medium</a>
       <a href="http://www.linkedin.com/in/revati-natu" target="_blank"><img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="" />LinkedIn</a>
     </div>
   </div>
@@ -384,27 +391,30 @@
       <h2>Experience</h2>
       <div class="grid-list">
         <div class="card">
+          <h3>Machine Learning Intern</h3>
+          <p>Diabetes Prediction System<br/><small>Sep 2023– Feb 2024</small></p>
+          <ul>
+            <li> Applied advanced preprocessing techniques and explored over 10 machine learning algorithms to create a Linear Stacking Classifier, achieving superior diabetes prediction accuracy.</li>
+            <li> Led the research from data preprocessing to model evaluation, and presented findings at an international conference, earning the Best Paper award for its innovative contributions to the field</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Deep Learning Intern</h3>
+          <p>Forgery Detection System via Inpainting Techniques<br/><small>Feb 2025– Apr 2025</small></p>
+          <ul>
+            <li>Independently developed a computer vision system for forgery detection, achieving 95.52% accuracy, by leveraging a large  publicly available image dataset, using image inpainting techniques on it and displaying the confidence score.</li>
+            <li>Developed and deployed a DCGAN with a Streamlit UI to detect image forgeries for real-time digital forensics</li>
+          </ul>
+        </div>
+        <div class="card">
           <h3>Software Engineer</h3>
-          <p>ABC Corp<br/><small>2023–Present</small></p>
+          <p>Commonwealth Secretariat<br/><small>Jan 2025– May 2025</small></p>
           <ul>
-            <li>Developed scalable web solutions.</li>
-            <li>Improved site performance by 30%.</li>
+            <li>Contributed to the development of an AI prototype of an Early Warning Dashboard for the Governance and Peace Directorate at the Commonwealth Secretariat.</li>
           </ul>
         </div>
-        <div class="card">
-          <h3>Frontend Dev Intern</h3>
-          <p>XYZ Solutions<br/><small>2022–2023</small></p>
-          <ul>
-            <li>Designed UI prototypes for analytics dashboard.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Art Instructor</h3>
-          <p>Freelance<br/><small>2021–2022</small></p>
-          <ul>
-            <li>Taught art to 40+ kids online.</li>
-          </ul>
-        </div>
+        
       </div>
     </section>
     <!-- Projects Section -->
@@ -412,16 +422,20 @@
       <h2>Projects</h2>
       <div class="grid-list">
         <div class="card">
-          <h3>Portfolio Website</h3>
-          <p>Built my own site using React/JS/HTML/CSS. Fully responsive and accessible.</p>
+          <h3>Research Paper Summarizer and Chatbot</h3>
+          <p>Built a Streamlit-based tool for uploading and querying research papers using Gemini Pro and LangChain, enabling efficient  literature reviews with structured metadata extraction, CSV summarization, and smart Q&A from PDFs.</p>
         </div>
         <div class="card">
-          <h3>Paintings Gallery</h3>
-          <p>A virtual gallery of my digital paintings. Implemented with Three.js.</p>
+          <h3>Retrieval-Augmented Generation System for Resume Analysis</h3>
+          <p>Designed an resume intelligent document analysis system using RAG architecture, integrating LangChain, Ollama LLM, and vector embeddings for automated resume parsing and semantic search.</p>
         </div>
         <div class="card">
-          <h3>Chord Trainer App</h3>
-          <p>A tool for guitarists to master new chords, built in Flutter.</p>
+          <h3>ECG-Based Arrhythmia Classification System</h3>
+          <p>Conducted comparative analysis of machine learning and deep learning models for cardiac arrhythmia detection using the  MIT-BIH dataset, achieving 97.32% accuracy with the Random Forest classifier.</p>
+        </div>
+        <div class="card">
+          <h3>Phishing URLs Classification System</h3>
+          <p>Developed a machine learning-based Phishing URL Classification System, implementing ensemble learning techniques to accurately classify over 230,000 websites with over 50 features.</p>
         </div>
       </div>
     </section>
@@ -489,6 +503,7 @@
           </div>
         </div>
 
+
         <div class="tech-stack-group">
           <h4>🛠️ Tools</h4>
           <div class="tech-stack-icons">
@@ -519,6 +534,7 @@
           </div>
         </div>
 
+
         <div class="tech-stack-group">
           <h4>🗄️ Database</h4>
           <div class="tech-stack-icons">
@@ -536,6 +552,7 @@
             </div>
           </div>
         </div>
+
 
         <div class="tech-stack-group">
           <h4>🤖 AI/ML Integration</h4>
@@ -565,6 +582,7 @@
         </div>
 
 
+
         <div class="tech-stack-group">
           <h4>☁️ Cloud & DevOps</h4>
           <div class="tech-stack-icons">
@@ -584,24 +602,53 @@
         </div>
       </div>
     </section>
+
+    <!-- Beyond Code Section -->
+    <section id="beyondcode" class="section">
+      <h2>Beyond Code 🎨</h2>
+      <p>
+        When I’m not debugging lines of code or diving into machine learning models, you’ll likely find me immersed in the world of creativity. I believe that the best ideas often come when we allow our minds to explore freely — outside the IDE.
+      </p>
+
+      <div class="tech-stack-container">
+        <div class="tech-stack-group">
+          <h3>🖌️ Art & Sketching</h3>
+          <p>Check out my <a href="https://www.instagram.com/artsyrevati/" target="_blank">art page</a> where I share sketches, doodles, and experimental pieces. It’s a colorful diary of my thoughts and moods.</p>
+        </div>
+
+        <div class="tech-stack-group">
+          <h3>📚 Notes & Writing</h3>
+          <p>I maintain detailed and aesthetic digital notes on tech and beyond. They're a mix of clarity and creativity — <a href="https://github.com/Revati-N/AI-Notes-DeepDive" target="_blank">see them on GitHub</a>.</p>
+        </div>
+        
+        <div class="tech-stack-group">
+          <h3>🎸 Guitar</h3>
+          <p>I’ve been strumming and picking for a while now — it's my go-to escape and expression. Whether it’s acoustic melodies or digital loops, music keeps me grounded and inspired.</p>
+        </div>
+      </div>
+    </section>
+
+
     <!-- Connect Section -->
     <section id="connect">
       <h2>Connect with Me</h2>
       <div class = "about-content">
         <div class="connect-text">
           <p>Let's chat! Reach me on:</p>
-            Gmail: <a href="mailto:your.email@example.com" title="Email"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail Logo" width="32" height="32" style="vertical-align:middle;"></a><br/><br/>
-            GitHub: <a href="https://github.com/YOUR_ID" target="_blank" title="GitHub"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="32" height="32" style="vertical-align:middle;"></a><br/><br/>
-            Medium: <a href="https://medium.com/@YOUR_ID" target="_blank" title="Medium"><img src="https://cdn.iconscout.com/icon/free/png-256/medium-47-433328.png" alt="Medium Logo" width="32" height="32" style="vertical-align:middle;"></a><br/><br/>
-            LinkedIn: <a href="https://linkedin.com/in/YOUR_ID" target="_blank" title="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Logo" width="32" height="32" style="vertical-align:middle;"></a>
+            Gmail: <a href="mailto:revatisnatu@gmail.com" title="Email"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail Logo" width="32" height="32" style="vertical-align:middle;">Gmail </a><br/><br/>
+            GitHub: <a href="https://github.com/Revati-N/" target="_blank" title="GitHub"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="32" height="32" style="vertical-align:middle;">GitHub</a><br/><br/>
+            Medium: <a href="https://medium.com/@revatisnatu" target="_blank" title="Medium"><img src="https://cdn.iconscout.com/icon/free/png-256/medium-47-433328.png" alt="Medium Logo" width="32" height="32" style="vertical-align:middle;">Medium</a><br/><br/>
+            LinkedIn: <a href="https://linkedin.com/in/revatisnatu" target="_blank" title="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Logo" width="32" height="32" style="vertical-align:middle;">LinkedIn</a>
         </div>
         <div class="about-cartoon">
-          <dotlottie-wc src="https://lottie.host/9ced6261-4a7a-4b68-a37d-04405c9c0fcf/DgX1Kp4DMu.lottie" 
-            style="width: 700px;height: 400px" 
-            speed="1" 
-            autoplay loop
-          >
-          </dotlottie-wc>
+          <a href ="mailto:revatisnatu@gmail.com" title="Email">
+            <dotlottie-wc src="https://lottie.host/9ced6261-4a7a-4b68-a37d-04405c9c0fcf/DgX1Kp4DMu.lottie" 
+              style="width: 700px;height: 400px" 
+              speed="1" 
+              autoplay loop
+            >
+            </dotlottie-wc>
+          </a>
         </div>
       </div>
     </section>
@@ -612,44 +659,13 @@
       document.getElementById('sidebar').classList.toggle('collapsed');
     }
 
-    // Snap scroll to next/prev section
-    function scrollToNearestSection(event) {
-      // Only for mouse wheel, not for mobile touch
-      if (!event.isTrusted) return;
-      event.preventDefault();
-
-      const sections = Array.from(document.querySelectorAll('.main > section'));
-      const viewTop = window.scrollY + 64;
-      let found = false;
-      for (let i = 0; i < sections.length; i++) {
-        const s = sections[i];
-        const rect = s.getBoundingClientRect();
-        const sTop = rect.top + window.scrollY;
-        const sBot = sTop + rect.height;
-        if ((viewTop >= sTop && viewTop < sBot) ||
-            (viewTop + window.innerHeight > sTop && viewTop < sTop + rect.height)) {
-          found = true;
-          if (event.deltaY > 0 && i < sections.length - 1) {
-            sections[i+1].scrollIntoView({behavior:"smooth", block:"start"});
-          } else if (event.deltaY < 0 && i > 0) {
-            sections[i-1].scrollIntoView({behavior:"smooth", block:"start"});
-          }
-          break;
-        }
-      }
-      if (!found && sections.length) {
-        sections[0].scrollIntoView({behavior:"smooth", block:"start"});
-      }
-    }
-    // Optional: Use scroll-snap for smoothness, JS for forced snap on mouse wheel
-    document.getElementById('main').addEventListener('wheel', scrollToNearestSection, { passive: false });
-
     // Sidebar auto-close on mobile after clicking link
     document.querySelectorAll('.sidebar .links a').forEach(link => {
       link.addEventListener('click', () => {
         if (window.innerWidth <= 900) document.getElementById('sidebar').classList.add('collapsed');
       });
     });
+    
     // Ensure main margin works after sidebar toggle
     const sidebar = document.getElementById('sidebar');
     const main = document.getElementById('main');
