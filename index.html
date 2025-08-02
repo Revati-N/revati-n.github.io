@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name - Portfolio</title>
+  <title>Revati Natu</title>
   <style>
     :root {
-      --primary: #2a3d66;
-      --secondary: #f7c948;
-      --accent: #32c3a7;
-      --bg: #f4f4f7;
-      --header: #394867;
-      --sidebar: #22223b;
-      --text: #24292e;
-      --white: #fff;
-      --side-width: 220px;
+      --primary: #255957;     
+      --secondary: #ffb01d;   
+      --accent: #F9DC5C;
+      --bg: #e6c9cb;
+      --bgcard: #3070c9;
+      --header: #255957; 
+      --sidebar: #FA198B;    
+      --text: #255957;
+      --cardtext: #efe1e1;    
+      --connbg: #7e9cc6;  
+      --white: #fff;          
+      --side-width: 220px;  
       --side-min: 60px;
     }
+
     html, body {
       height: 100%;
       margin: 0;
@@ -24,6 +28,9 @@
       background: var(--bg);
       color: var(--text);
       scroll-behavior: smooth;
+    }
+    h2 {
+      color: var(--primary);
     }
     body {
       display: flex;
@@ -41,17 +48,17 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 32px;
+      padding: 0 22px;
       font-size: 1.2em;
       box-shadow: 0 3px 6px #0001;
     }
     .header .title {
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
       font-size: 1.3em;
     }
     .header .nav {
-      display: flex; gap: 20px; 
+      display: flex; gap: 0px; 
       align-items: center; 
     }
     .header .nav a {
@@ -68,7 +75,7 @@
     }
     .header .resume-btn {
       background: var(--secondary); color: var(--header);
-      padding: 6px 18px; border-radius: 4px; font-weight: bold; text-decoration: none;
+      padding: 6px 15px; border-radius: 4px; font-weight: bold; text-decoration: none;
       transition: filter 0.2s;
       margin-left: 15px;
     }
@@ -146,35 +153,47 @@
     section {
       min-height: 100vh;
       scroll-snap-align: start;
-      padding: 50px 10vw 40px 4vw;
+      padding: 70px 20px 25px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      text-align: justify;
       box-sizing: border-box;
       border-bottom: 1px solid #ccc3;
       background: var(--bg);
     }
-    @media (max-width: 900px) {
-      .main { padding-left: 0; }
-      .sidebar, .sidebar.collapsed { position: fixed; width: 100vw; height: auto; flex-direction: row; bottom: unset; top: 64px; left: 0; right: 0;}
-      .main, .sidebar, .sidebar.collapsed ~ .main { margin-left: 0; }
-      section { padding: 40px 5vw 30px 5vw;}
+
+    @media (min-width: 601px) {
+      .grid-list > .card:last-child:only-child,
+      .grid-list > .card:nth-last-child(1):nth-child(odd) {
+        grid-column: span 2;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 400px; /* Adjust as needed */
+        justify-self: center;
+      }
     }
+
     /* About section split with cartoon */
     .about-content {
-      display: flex; gap: 32px; align-items: center; justify-content: space-between;
+      display: flex; gap: 10px; align-items: center; justify-content: space-between;
       flex-direction: row;
     }
-    .about-text { flex: 1.5; }
-    .about-cartoon { flex: 1; display: flex; justify-content: center; }
+    .about-text { flex: 1.5; border: var(--accent);
+      padding: 20px; background: var(--bgcard);
+      color: var(--cardtext);
+      border-radius: 8px;
+      text-align: justify;
+    }
+
+    .about-cartoon { flex: 1; display: flex; text-align: justify;}
     .about-cartoon img {
-      width: 260px; height: 260px;
+      width: 350px; height: 350px;
       object-fit: contain;
       border-radius: 50%; background: #fff; box-shadow: 0 2px 10px #aaa2;
       transition: opacity 1s;
     }
     @media (max-width: 800px) {
-      .about-content { flex-direction: column; gap: 24px; }
+      .about-content { flex-direction: column; gap: 10px; }
       .about-cartoon img { width: 180px; height: 180px;}
     }
     /* Experience & Projects grid */
@@ -185,31 +204,138 @@
       .grid-list { grid-template-columns: 1fr; gap: 18px; }
     }
     .card {
-      background: #fff; border-radius: 8px; padding: 20px;
+      background: var(--bgcard); border-radius: 8px; padding: 20px;
+      color: var(--cardtext);
       box-shadow: 0 3px 12px #0001;
       transition: transform 0.2s;
     }
     .card:hover { transform: scale(1.03);}
-    /* Tech stack table */
-    .tech-stack-group { margin-bottom: 20px; }
-    .tech-stack-group h4 { margin-bottom: 10px;}
-    .tech-stack-icons { display: flex; flex-wrap: wrap; gap: 12px;}
-    .tech-stack-icons img { width: 46px; height: 46px; object-fit: contain; border-radius: 8px;}
-    /* Connect section */
-    .connect-links { display: flex; gap: 18px; margin-top: 18px;}
-    .connect-links a { color: var(--primary); font-size: 1.5em;}
+    
+    /* Enhanced Tech stack styling */
+    .tech-stack-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    
+    .tech-stack-group {
+      background: var(--bgcard);
+      border-radius: 12px;
+      padding: 25px;
+      color: var(--cardtext);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .tech-stack-group:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border-color: var(--secondary);
+    }
+    
+    .tech-stack-group h4 {
+      margin: 0 0 20px 0;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: var(--secondary);
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .tech-stack-icons {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 15px;
+      justify-items: center;
+    }
+    
+    .tech-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .tech-icon:hover {
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .tech-icon img {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    
+    .tech-icon span {
+      font-size: 0.85em;
+      font-weight: 500;
+      text-align: center;
+      color: var(--cardtext);
+      opacity: 0.9;
+    }
+    
+    @media (max-width: 768px) {
+      .tech-stack-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .tech-stack-icons {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 12px;
+      }
+      
+      .tech-icon img {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .tech-icon span {
+        font-size: 0.75em;
+      }
+    }
+    
+    .connect-text { flex: 1.5; border: var(--accent);
+      padding: 20px; 
+      background: var(--connbg);
+      color: var(--cardtext);
+      border-radius: 8px;
+      text-align: justify;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        display: none !important;
+      }
+      .main {
+        margin-left: 0 !important;
+      }
+    }
   </style>
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 </head>
 <body>
   <!-- Header -->
   <div class="header">
-    <div class="title">Your Name</div>
+    <div class="title">Revati Natu</div>
     <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#techstack">Tech Stack</a>
-      <a href="#connect">Connect</a>
+      <a href="#about">🏠 </a>
+      <a href="#experience">💼 </a>
+      <a href="#projects">🚀 </a>
+      <a href="#techstack">🛠️</a>
+      <a href="#connect">🔗 </a>
       <a href="YOUR_RESUME_LINK.pdf" target="_blank" class="resume-btn">Resume</a>
     </nav>
   </div>
@@ -217,17 +343,16 @@
   <div class="sidebar" id="sidebar">
     <button class="toggle" onclick="toggleSidebar()" title="Expand/Collapse">&#9776;</button>
     <div class="links">
-      <a href="#about" title="About">About</a>
-      <a href="#experience" title="Experience">Experience</a>
-      <a href="#projects" title="Projects">Projects</a>
-      <a href="#techstack" title="Tech Stack">Tech Stack</a>
-      <a href="#connect" title="Connect">Connect</a>
+      <a href="#about" title="About">🏠 About</a>
+      <a href="#experience" title="Experience">💼 Experience</a>
+      <a href="#projects" title="Projects">🚀 Projects</a>
+      <a href="#techstack" title="Tech Stack">🛠️ Tech Stack</a>
+      <a href="#connect" title="Connect">🔗 Connect</a>
     </div>
     <div class="socials">
-      <a href="https://github.com/YOUR_ID" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />GitHub</a>
+      <a href="https://github.com/Revati-N/" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />GitHub</a>
       <a href="https://medium.com/@YOUR_ID" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png" alt="" />Medium</a>
-      <a href="https://linkedin.com/in/YOUR_ID" target="_blank"><img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="" />LinkedIn</a>
-      <!-- Add more as needed -->
+      <a href="http://www.linkedin.com/in/revati-natu" target="_blank"><img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="" />LinkedIn</a>
     </div>
   </div>
   <div class="main" id="main">
@@ -236,13 +361,21 @@
       <h2>About Me</h2>
       <div class="about-content">
         <div class="about-text">
-          <p>Hello! 👋 I'm <strong>Your Name</strong>, a passionate engineer, artist, and guitarist.
-          I love crafting beautiful websites, painting vibrant canvases, and jamming on my guitar.
+          <p>Hello! I'm <strong>Revati Natu</strong>- a passionate AI/ML enthusiast and creative problem solver. <br/><br/>
+          I'm passionate about building things that make people think, smile, or both. Whether I'm experimenting with machine learning models, sketching out an idea in code or on canvas, or diving deep into books and research papers, I try to bring creativity and precision into everything I do.
+          <br/>
+          Currently exploring the crossroads of AI, creativity, and human behavior, I enjoy crafting intelligent systems — from recommendation engines to chatbots — while staying rooted in design thinking and expressive storytelling. My work often blends technical rigor with playful intuition.
+          </br>
+          If you ever want to collaborate on a coding project, brainstorm over a dataset, jam about AI, or even trade paintings — I'm all ears (and probably holding a guitar or stylus).  
           <br/><br/>
-          Reach out for collaborations, code talk, tuning session, or a painting gig!</p>
+          Let's connect — whether it's for a collab, a code jam, a jam session, or a splash of art!</p>
         </div>
         <div class="about-cartoon">
-          <img id="cartoon-img" src="coding_girl.svg" alt="Cartoon" />
+          <dotlottie-wc src="https://lottie.host/b3c35310-7505-4ff2-8857-249a097b47ac/6iwzFFLkwi.lottie" 
+            style="width: 500px; height: 450px" 
+            speed="1" 
+            autoplay loop>
+          </dotlottie-wc>
         </div>
       </div>
     </section>
@@ -292,46 +425,185 @@
         </div>
       </div>
     </section>
-    <!-- Tech stack Section -->
+    <!-- Enhanced Tech Stack Section -->
     <section id="techstack">
       <h2>Tech Stack</h2>
-      <div class="tech-stack-group">
-        <h4>Frontend</h4>
-        <div class="tech-stack-icons">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React" alt="React" />
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="HTML5" alt="HTML"/>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="CSS3" alt="CSS"/>
-          <!-- Add more -->
+      <div class="tech-stack-container">
+        <div class="tech-stack-group">
+          <h4>🎨 Languages</h4>
+          <div class="tech-stack-icons">
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+              <span>HTML5</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+              <span>CSS3</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+              <span>Python</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
+              <span>C</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" />
+              <span>C++</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="tech-stack-group">
-        <h4>Backend</h4>
-        <div class="tech-stack-icons">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" title="Node.js" alt="Node.js"/>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" title="Express" alt="Express"/>
-          <!-- Add more -->
+        
+        <div class="tech-stack-group">
+          <h4>🤖 AI/ML</h4>
+          <div class="tech-stack-icons">
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" />
+              <span>TensorFlow</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" />
+              <span>PyTorch</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
+              <span>Pandas</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" />
+              <span>NumPy</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn" />
+              <span>Scikit-learn</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="Seaborn" />
+              <span>Seaborn</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="tech-stack-group">
-        <h4>Tools</h4>
-        <div class="tech-stack-icons">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" title="Git" alt="Git"/>
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" title="GitHub" alt="GitHub"/>
-          <!-- Add more -->
+
+        <div class="tech-stack-group">
+          <h4>🛠️ Tools</h4>
+          <div class="tech-stack-icons">
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+              <span>Git</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+              <span>GitHub</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" />
+              <span>VS Code</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
+              <span>Figma</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" />
+              <span>Flutter</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter" />
+              <span>Jupyter</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack-group">
+          <h4>🗄️ Database</h4>
+          <div class="tech-stack-icons">
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+              <span>MongoDB</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+              <span>PostgreSQL</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+              <span>MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack-group">
+          <h4>🤖 AI/ML Integration</h4>
+          <div class="tech-stack-icons">
+            <!-- LangChain -->
+            <div class="tech-icon">
+              <img src="https://python.langchain.com/img/brand/wordmark.png" alt="LangChain" />
+              <span>LangChain</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" />
+              <span>Hugging Face</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://avatars.githubusercontent.com/u/151674099?s=200&v=4" alt="Ollama" />
+              <span>Ollama</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" />
+              <span>PyTorch</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://opencv.org/wp-content/uploads/2022/05/logo.png" alt="OpenCV" />
+              <span>OpenCV</span>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="tech-stack-group">
+          <h4>☁️ Cloud & DevOps</h4>
+          <div class="tech-stack-icons">
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+              <span>Docker</span>
+            </div>
+            <div class="tech-icon">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" />
+              <span>Kubernetes</span>
+            </div>
+            <div class="tech-icon">
+              <img src="images/AWS-logo.png" alt="AWS" />
+              <span>AWS</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <!-- Connect Section -->
     <section id="connect">
       <h2>Connect with Me</h2>
-      <p>Let's chat! Reach me on:</p>
-      <div class="connect-links">
-        <a href="mailto:your.email@example.com" title="Email"><span>📧</span></a>
-        <a href="https://github.com/YOUR_ID" target="_blank" title="GitHub"><span>🐙</span></a>
-        <a href="https://medium.com/@YOUR_ID" target="_blank" title="Medium"><span>✍️</span></a>
-        <a href="https://linkedin.com/in/YOUR_ID" target="_blank" title="LinkedIn"><span>💼</span></a>
+      <div class = "about-content">
+        <div class="connect-text">
+          <p>Let's chat! Reach me on:</p>
+            Gmail: <a href="mailto:your.email@example.com" title="Email"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail Logo" width="32" height="32" style="vertical-align:middle;"></a><br/><br/>
+            GitHub: <a href="https://github.com/YOUR_ID" target="_blank" title="GitHub"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="32" height="32" style="vertical-align:middle;"></a><br/><br/>
+            Medium: <a href="https://medium.com/@YOUR_ID" target="_blank" title="Medium"><img src="https://cdn.iconscout.com/icon/free/png-256/medium-47-433328.png" alt="Medium Logo" width="32" height="32" style="vertical-align:middle;"></a><br/><br/>
+            LinkedIn: <a href="https://linkedin.com/in/YOUR_ID" target="_blank" title="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Logo" width="32" height="32" style="vertical-align:middle;"></a>
+        </div>
+        <div class="about-cartoon">
+          <dotlottie-wc src="https://lottie.host/9ced6261-4a7a-4b68-a37d-04405c9c0fcf/DgX1Kp4DMu.lottie" 
+            style="width: 700px;height: 400px" 
+            speed="1" 
+            autoplay loop
+          >
+          </dotlottie-wc>
+        </div>
       </div>
-      <p style="margin-top: 20px;">You can also find some contact details in the About section.</p>
     </section>
   </div>
   <script>
@@ -339,18 +611,6 @@
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('collapsed');
     }
-
-    // Cartoon alternation logic
-    const cartoonImages = [
-      "coding_girl.svg",   // add your SVGs or GIFs to project root or use direct links
-      "painting_girl.svg",
-      "guitar_girl.svg"
-    ];
-    let index = 0;
-    setInterval(() => {
-      index = (index + 1) % cartoonImages.length;
-      document.getElementById('cartoon-img').src = cartoonImages[index];
-    }, 4000);
 
     // Snap scroll to next/prev section
     function scrollToNearestSection(event) {
