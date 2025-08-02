@@ -1,80 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revati Natu </title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name - Portfolio</title>
+  <style>
+    :root {
+      --primary: #2a3d66;
+      --secondary: #f7c948;
+      --accent: #32c3a7;
+      --bg: #f4f4f7;
+      --header: #394867;
+      --sidebar: #22223b;
+      --text: #24292e;
+      --white: #fff;
+      --side-width: 220px;
+      --side-min: 60px;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /* Sticky header */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: var(--header);
+      color: var(--white);
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      font-size: 1.2em;
+      box-shadow: 0 3px 6px #0001;
+    }
+    .header .title {
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 1.3em;
+    }
+    .header .nav {
+      display: flex; gap: 20px; 
+      align-items: center; 
+    }
+    .header .nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 10px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .header .nav a:hover {
+      background: var(--secondary); color: var(--header);
+    }
+    .header .resume-btn {
+      background: var(--secondary); color: var(--header);
+      padding: 6px 18px; border-radius: 4px; font-weight: bold; text-decoration: none;
+      transition: filter 0.2s;
+      margin-left: 15px;
+    }
+    .header .resume-btn:hover { filter: brightness(1.1); }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 64px; left: 0; bottom: 0;
+      width: var(--side-width);
+      background: var(--sidebar);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 1000;
+      transition: width 0.2s;
+    }
+    .sidebar.collapsed { width: var(--side-min); }
+    .sidebar .toggle {
+      background: none; border: none; color: var(--secondary);
+      font-size: 1.5em; text-align: right; margin: 12px;
+      cursor: pointer;
+      align-self: flex-end;
+    }
+    .sidebar .links {
+      display: flex; flex-direction: column; gap: 10px; margin: 10px;
+    }
+    .sidebar .links a {
+      background: var(--header);
+      color: var(--white);
+      border: none; border-radius: 4px;
+      padding: 12px 16px; text-decoration: none;
+      margin-bottom: 3px;
+      font-size: 1em; font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+      text-align: left;
+    }
+    .sidebar .links a:hover {
+      background: var(--secondary); color: var(--sidebar);
+    }
+    .sidebar .socials {
+      display: flex; flex-direction: column; gap: 12px;
+      align-items: flex-start; margin: 14px;
+      margin-bottom: 22px;
+    }
+    .sidebar .socials a {
+      display: flex; align-items: center;
+      color: var(--accent); text-decoration: none;
+      font-size: 1.1em;
+    }
+    .sidebar .socials img {
+      width: 22px; height: 22px; margin-right: 8px;
+    }
+    .sidebar.collapsed .links a, .sidebar.collapsed .socials a { 
+      justify-content: center; text-indent: -9999px;
+      width: 36px; padding: 8px 0;
+    }
+    .sidebar.collapsed .socials a img,
+    .sidebar.collapsed .links a:before {
+      text-indent: 0; margin: 0; display: inline;
+    }
+    .main {
+      margin-left: var(--side-width);
+      transition: margin 0.2s;
+      padding-top: 64px;
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+    }
+    .sidebar.collapsed ~ .main {
+      margin-left: var(--side-min);
+    }
+    /* Each section uses snap-y */
+    section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      padding: 50px 10vw 40px 4vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      border-bottom: 1px solid #ccc3;
+      background: var(--bg);
+    }
+    @media (max-width: 900px) {
+      .main { padding-left: 0; }
+      .sidebar, .sidebar.collapsed { position: fixed; width: 100vw; height: auto; flex-direction: row; bottom: unset; top: 64px; left: 0; right: 0;}
+      .main, .sidebar, .sidebar.collapsed ~ .main { margin-left: 0; }
+      section { padding: 40px 5vw 30px 5vw;}
+    }
+    /* About section split with cartoon */
+    .about-content {
+      display: flex; gap: 32px; align-items: center; justify-content: space-between;
+      flex-direction: row;
+    }
+    .about-text { flex: 1.5; }
+    .about-cartoon { flex: 1; display: flex; justify-content: center; }
+    .about-cartoon img {
+      width: 260px; height: 260px;
+      object-fit: contain;
+      border-radius: 50%; background: #fff; box-shadow: 0 2px 10px #aaa2;
+      transition: opacity 1s;
+    }
+    @media (max-width: 800px) {
+      .about-content { flex-direction: column; gap: 24px; }
+      .about-cartoon img { width: 180px; height: 180px;}
+    }
+    /* Experience & Projects grid */
+    .grid-list {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+    }
+    @media (max-width: 600px) {
+      .grid-list { grid-template-columns: 1fr; gap: 18px; }
+    }
+    .card {
+      background: #fff; border-radius: 8px; padding: 20px;
+      box-shadow: 0 3px 12px #0001;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: scale(1.03);}
+    /* Tech stack table */
+    .tech-stack-group { margin-bottom: 20px; }
+    .tech-stack-group h4 { margin-bottom: 10px;}
+    .tech-stack-icons { display: flex; flex-wrap: wrap; gap: 12px;}
+    .tech-stack-icons img { width: 46px; height: 46px; object-fit: contain; border-radius: 8px;}
+    /* Connect section */
+    .connect-links { display: flex; gap: 18px; margin-top: 18px;}
+    .connect-links a { color: var(--primary); font-size: 1.5em;}
+  </style>
 </head>
-
 <body>
-  <header class="mobile-nav">
-    <a href="#home">🏠 <span>Home</span></a>
-    <a href="#projects">💻 <span>Projects</span></a>
-    <a href="#ai">🧠 <span>AI</span></a>
-    <a href="#resume">📄 <span>Resume</span></a>
-    <a href="#contact">📫 <span>Contact</span></a>
-  </header>
-
-  <aside>
-    <a href="#home">🏠 <span>Home</span></a>
-    <a href="#projects">💻 <span>Projects</span></a>
-    <a href="#ai">🧠 <span>AI/ML Work</span></a>
-    <a href="#resume">📄 <span>Resume</span></a>
-    <a href="#contact">📫 <span>Contact</span></a>
-  </aside>
-
-  <main>
-    <section id="home" class="hero">
-      <h1>Hi, I’m Revati Natu</h1>
-      <h2>// AI/ML Developer | Creative Technologist | Writer</h2>
+  <!-- Header -->
+  <div class="header">
+    <div class="title">Your Name</div>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#techstack">Tech Stack</a>
+      <a href="#connect">Connect</a>
+      <a href="YOUR_RESUME_LINK.pdf" target="_blank" class="resume-btn">Resume</a>
+    </nav>
+  </div>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <button class="toggle" onclick="toggleSidebar()" title="Expand/Collapse">&#9776;</button>
+    <div class="links">
+      <a href="#about" title="About">About</a>
+      <a href="#experience" title="Experience">Experience</a>
+      <a href="#projects" title="Projects">Projects</a>
+      <a href="#techstack" title="Tech Stack">Tech Stack</a>
+      <a href="#connect" title="Connect">Connect</a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/YOUR_ID" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />GitHub</a>
+      <a href="https://medium.com/@YOUR_ID" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968885.png" alt="" />Medium</a>
+      <a href="https://linkedin.com/in/YOUR_ID" target="_blank"><img src="https://cdn-icons-png.flaticon.com/128/145/145807.png" alt="" />LinkedIn</a>
+      <!-- Add more as needed -->
+    </div>
+  </div>
+  <div class="main" id="main">
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>Hello! 👋 I'm <strong>Your Name</strong>, a passionate engineer, artist, and guitarist.
+          I love crafting beautiful websites, painting vibrant canvases, and jamming on my guitar.
+          <br/><br/>
+          Reach out for collaborations, code talk, tuning session, or a painting gig!</p>
+        </div>
+        <div class="about-cartoon">
+          <img id="cartoon-img" src="coding_girl.svg" alt="Cartoon" />
+        </div>
+      </div>
     </section>
-
+    <!-- Experience Section -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="grid-list">
+        <div class="card">
+          <h3>Software Engineer</h3>
+          <p>ABC Corp<br/><small>2023–Present</small></p>
+          <ul>
+            <li>Developed scalable web solutions.</li>
+            <li>Improved site performance by 30%.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Frontend Dev Intern</h3>
+          <p>XYZ Solutions<br/><small>2022–2023</small></p>
+          <ul>
+            <li>Designed UI prototypes for analytics dashboard.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Art Instructor</h3>
+          <p>Freelance<br/><small>2021–2022</small></p>
+          <ul>
+            <li>Taught art to 40+ kids online.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Projects Section -->
     <section id="projects">
-      <h2>💻 Projects</h2>
-      <div class="projects">
+      <h2>Projects</h2>
+      <div class="grid-list">
         <div class="card">
-          <h3>StrumAI</h3>
-          <p>Guitar audio input to chord/tab prediction using ML/DL techniques.</p>
+          <h3>Portfolio Website</h3>
+          <p>Built my own site using React/JS/HTML/CSS. Fully responsive and accessible.</p>
         </div>
         <div class="card">
-          <h3>Book Recommender</h3>
-          <p>Collaborative filtering-based engine using Python and pandas.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="ai">
-      <h2>🧠 AI/ML Work</h2>
-      <div class="ai">
-        <div class="card">
-          <h3>Twitter Depression Detection</h3>
-          <p>LSTM, CNN, and BERT models evaluated for sentiment classification.</p>
+          <h3>Paintings Gallery</h3>
+          <p>A virtual gallery of my digital paintings. Implemented with Three.js.</p>
         </div>
         <div class="card">
-          <h3>LangChain PDF Chat</h3>
-          <p>Conversational AI on custom documents using Gemini + LangGraph.</p>
+          <h3>Chord Trainer App</h3>
+          <p>A tool for guitarists to master new chords, built in Flutter.</p>
         </div>
       </div>
     </section>
-
-    <section id="resume">
-      <h2>📄 Resume</h2>
-      <p>Education, internships, and achievements timeline will go here.</p>
+    <!-- Tech stack Section -->
+    <section id="techstack">
+      <h2>Tech Stack</h2>
+      <div class="tech-stack-group">
+        <h4>Frontend</h4>
+        <div class="tech-stack-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" title="React" alt="React" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" title="HTML5" alt="HTML"/>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" title="CSS3" alt="CSS"/>
+          <!-- Add more -->
+        </div>
+      </div>
+      <div class="tech-stack-group">
+        <h4>Backend</h4>
+        <div class="tech-stack-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" title="Node.js" alt="Node.js"/>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" title="Express" alt="Express"/>
+          <!-- Add more -->
+        </div>
+      </div>
+      <div class="tech-stack-group">
+        <h4>Tools</h4>
+        <div class="tech-stack-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" title="Git" alt="Git"/>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" title="GitHub" alt="GitHub"/>
+          <!-- Add more -->
+        </div>
+      </div>
     </section>
-
-    <section id="contact">
-      <h2>📫 Contact Me</h2>
-      <p>Email: revati@example.com</p>
-      <p>LinkedIn | GitHub | Twitter</p>
+    <!-- Connect Section -->
+    <section id="connect">
+      <h2>Connect with Me</h2>
+      <p>Let's chat! Reach me on:</p>
+      <div class="connect-links">
+        <a href="mailto:your.email@example.com" title="Email"><span>📧</span></a>
+        <a href="https://github.com/YOUR_ID" target="_blank" title="GitHub"><span>🐙</span></a>
+        <a href="https://medium.com/@YOUR_ID" target="_blank" title="Medium"><span>✍️</span></a>
+        <a href="https://linkedin.com/in/YOUR_ID" target="_blank" title="LinkedIn"><span>💼</span></a>
+      </div>
+      <p style="margin-top: 20px;">You can also find some contact details in the About section.</p>
     </section>
+  </div>
+  <script>
+    // Sidebar toggle
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+    }
 
-    <footer>
-      <p>&copy; 2025 Revati Natu. All rights reserved.</p>
-    </footer>
-  </main>
+    // Cartoon alternation logic
+    const cartoonImages = [
+      "coding_girl.svg",   // add your SVGs or GIFs to project root or use direct links
+      "painting_girl.svg",
+      "guitar_girl.svg"
+    ];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % cartoonImages.length;
+      document.getElementById('cartoon-img').src = cartoonImages[index];
+    }, 4000);
+
+    // Snap scroll to next/prev section
+    function scrollToNearestSection(event) {
+      // Only for mouse wheel, not for mobile touch
+      if (!event.isTrusted) return;
+      event.preventDefault();
+
+      const sections = Array.from(document.querySelectorAll('.main > section'));
+      const viewTop = window.scrollY + 64;
+      let found = false;
+      for (let i = 0; i < sections.length; i++) {
+        const s = sections[i];
+        const rect = s.getBoundingClientRect();
+        const sTop = rect.top + window.scrollY;
+        const sBot = sTop + rect.height;
+        if ((viewTop >= sTop && viewTop < sBot) ||
+            (viewTop + window.innerHeight > sTop && viewTop < sTop + rect.height)) {
+          found = true;
+          if (event.deltaY > 0 && i < sections.length - 1) {
+            sections[i+1].scrollIntoView({behavior:"smooth", block:"start"});
+          } else if (event.deltaY < 0 && i > 0) {
+            sections[i-1].scrollIntoView({behavior:"smooth", block:"start"});
+          }
+          break;
+        }
+      }
+      if (!found && sections.length) {
+        sections[0].scrollIntoView({behavior:"smooth", block:"start"});
+      }
+    }
+    // Optional: Use scroll-snap for smoothness, JS for forced snap on mouse wheel
+    document.getElementById('main').addEventListener('wheel', scrollToNearestSection, { passive: false });
+
+    // Sidebar auto-close on mobile after clicking link
+    document.querySelectorAll('.sidebar .links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900) document.getElementById('sidebar').classList.add('collapsed');
+      });
+    });
+    // Ensure main margin works after sidebar toggle
+    const sidebar = document.getElementById('sidebar');
+    const main = document.getElementById('main');
+    new ResizeObserver(() => {
+      if (sidebar.classList.contains('collapsed')) {
+        main.style.marginLeft = 'var(--side-min)';
+      } else {
+        main.style.marginLeft = 'var(--side-width)';
+      }
+    }).observe(sidebar);
+  </script>
 </body>
-
 </html>
