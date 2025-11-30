@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Revati Natu - AI/ML Engineer Passionate about machine learning, deep learning, and AI systems. View my projects, experience, and creative work."/>
+  
+  <!-- Preconnect to external resources -->
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://lottie.host">
+  
   <title>Revati Natu💻</title>
   <style>
     :root {
@@ -23,7 +30,6 @@
       --side-min: 60px;
     }
 
-
     html, body {
       height: 100%;
       margin: 0;
@@ -40,6 +46,7 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    
     /* Sticky header */
     .header {
       position: fixed;
@@ -84,7 +91,6 @@
     }
     .header .resume-btn:hover { filter: brightness(1.1); }
 
-
     /* Sidebar */
     .sidebar {
       position: fixed;
@@ -96,6 +102,7 @@
       justify-content: space-between;
       z-index: 1000;
       transition: width 0.2s;
+      will-change: width;
     }
     .sidebar.collapsed { width: var(--side-min); }
     .sidebar .toggle {
@@ -152,6 +159,7 @@
     .sidebar.collapsed ~ .main {
       margin-left: var(--side-min);
     }
+    
     /* Each section */
     section {
       min-height: 100vh;
@@ -164,43 +172,43 @@
       background: var(--bg);
     }
 
-
     @media (min-width: 601px) {
       .grid-list > .card:last-child:only-child,
       .grid-list > .card:nth-last-child(1):nth-child(odd) {
         grid-column: span 2;
         margin-left: auto;
         margin-right: auto;
-        max-width: 400px; /* Adjust as needed */
+        max-width: 400px;
         justify-self: center;
       }
     }
-
 
     /* About section split with cartoon */
     .about-content {
       display: flex; gap: 10px; align-items: center; justify-content: space-between;
       flex-direction: row;
     }
-    .about-text { flex: 1.5; border: var(--accent);
+    .about-text { 
+      flex: 1.5; border: var(--accent);
       padding: 20px; background: var(--bgcard);
       color: var(--cardtext);
       border-radius: 8px;
       text-align: justify;
     }
 
-
-    .about-cartoon { flex: 1; display: flex; text-align: justify;}
-    .about-cartoon img {
-      width: 350px; height: 350px;
-      object-fit: contain;
-      border-radius: 50%; background: #fff; box-shadow: 0 2px 10px #aaa2;
-      transition: opacity 1s;
+    .about-cartoon { 
+      flex: 1; display: flex; text-align: justify;
+      min-height: 300px; /* Prevent layout shift */
     }
+    .about-cartoon dotlottie-wc {
+      width: 450px; height: 300px;
+    }
+    
     @media (max-width: 800px) {
       .about-content { flex-direction: column; gap: 10px; }
-      .about-cartoon img { width: 180px; height: 180px;}
+      .about-cartoon dotlottie-wc { width: 180px; height: 180px;}
     }
+    
     /* Experience & Projects grid */
     .grid-list {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
@@ -213,6 +221,7 @@
       color: var(--cardtext);
       box-shadow: 0 3px 12px #0001;
       transition: transform 0.2s;
+      will-change: transform;
     }
     .card:hover { transform: scale(1.03);}
     
@@ -232,6 +241,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: 2px solid transparent;
+      will-change: transform;
     }
     
     .tech-stack-group:hover {
@@ -266,6 +276,7 @@
       transition: all 0.3s ease;
       background: rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
+      will-change: transform;
     }
     
     .tech-icon:hover {
@@ -312,14 +323,14 @@
       }
     }
     
-    .connect-text { flex: 1.5; border: var(--accent);
+    .connect-text { 
+      flex: 1.5; border: var(--accent);
       padding: 20px; 
       background: var(--connbg);
       color: var(--cardtext);
       border-radius: 8px;
       text-align: justify;
     }
-
 
     @media (max-width: 900px) {
       .sidebar {
@@ -329,18 +340,26 @@
         margin-left: 0 !important;
       }
     }
+    
+    /* Loading state for Lottie */
+    .lottie-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+    }
   </style>
   
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics - Async -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-K36PWGWJY6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-K36PWGWJY6');
   </script>
-  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 </head>
 <body>
   <!-- Header -->
@@ -351,11 +370,12 @@
       <a href="#experience">💼 </a>
       <a href="#projects">🚀 </a>
       <a href="#techstack">🛠️</a>
-      <a href ="beyondcode">💖</a>
+      <a href="#beyondcode">💖</a>
       <a href="#connect">🔗 </a>
       <a href="RevatiNatu.pdf" target="_blank" class="resume-btn">Resume</a>
     </nav>
   </div>
+  
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <button class="toggle" onclick="toggleSidebar()" title="Expand/Collapse">&#9776;</button>
@@ -368,11 +388,12 @@
       <a href="#connect" title="Connect">🔗 Connect</a>
     </div>
     <div class="socials">
-      <a href="https://github.com/Revati-N/" target="_blank"><img src="images/github.jpg" alt="Github" />GitHub</a>
-      <a href="https://medium.com/@revatisnatu" target="_blank"><img src="images/medium.png" alt="Medium" />Medium</a>
-      <a href="http://www.linkedin.com/in/revati-natu" target="_blank"><img src="images/linkedin.png" alt="LinkedIn" />LinkedIn</a>
+      <a href="https://github.com/Revati-N/" target="_blank" rel="noopener"><img src="images/github.jpg" alt="Github" loading="lazy" width="22" height="22" />GitHub</a>
+      <a href="https://medium.com/@revatisnatu" target="_blank" rel="noopener"><img src="images/medium.png" alt="Medium" loading="lazy" width="22" height="22" />Medium</a>
+      <a href="http://www.linkedin.com/in/revati-natu" target="_blank" rel="noopener"><img src="images/linkedin.png" alt="LinkedIn" loading="lazy" width="22" height="22" />LinkedIn</a>
     </div>
   </div>
+  
   <div class="main" id="main">
     <!-- About Section -->
     <section id="about">
@@ -389,17 +410,11 @@
           Let's connect — whether it's for a collab, a code jam, a jam session, or a splash of art!</p>
         </div>
         <div class="about-cartoon">
-          <dotlottie-wc
-              src="https://lottie.host/645765a5-87be-4359-8853-62880f686be0/2PYAgluiWT.lottie"
-              style="width: 450px;height: 300px"
-              speed="1"
-              autoplay
-              loop
-            >
-        </dotlottie-wc>
+          <div class="lottie-container" data-lottie-src="https://lottie.host/645765a5-87be-4359-8853-62880f686be0/2PYAgluiWT.lottie"></div>
         </div>
       </div>
     </section>
+    
     <!-- Experience Section -->
     <section id="experience">
       <h2>Experience</h2>
@@ -421,6 +436,7 @@
             <li>Developed and deployed a DCGAN with a Streamlit UI to detect image forgeries for real-time digital forensics</li>
           </ul>
         </div>
+        
         <div class="card">
           <h3>Software Engineer</h3>
           <p>Commonwealth Secretariat<br/><small>Jan 2025– May 2025</small></p>
@@ -428,15 +444,15 @@
             <li>Contributed to the development of an AI prototype of an Early Warning Dashboard for the Governance and Peace Directorate at the Commonwealth Secretariat.</li>
           </ul>
         </div>
-        
       </div>
     </section>
+    
     <!-- Projects Section -->
     <section id="projects">
       <h2>Projects</h2>
       <div class="grid-list">
         <div class="card">
-          <h3>AI-Powered CSV Analyzer <a href="https://analyticsv.streamlit.app/" target="_blank">Link</a></h3>
+          <h3>AI-Powered CSV Analyzer <a href="https://analyticsv.streamlit.app/" target="_blank" rel="noopener">Link</a></h3>
           <p>Built intelligent data analysis tool with natural language querying using LangChain and local LLM (Llama2). Processes datasets up to 200MB with deployed full-featured web app enabling interactive data visualization. Implemented privacy-first architecture delivering real-time insights through AI-driven pandas agents</p>
         </div>
         <div class="card">
@@ -457,6 +473,7 @@
         </div>
       </div>
     </section>
+    
     <!-- Enhanced Tech Stack Section -->
     <section id="techstack">
       <h2>Tech Stack</h2>
@@ -465,27 +482,27 @@
           <h4> 🌐Languages</h4>
           <div class="tech-stack-icons">
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" loading="lazy" width="50" height="50" />
               <span>HTML5</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" loading="lazy" width="50" height="50" />
               <span>CSS3</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" loading="lazy" width="50" height="50" />
               <span>JavaScript</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy" width="50" height="50" />
               <span>Python</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C" loading="lazy" width="50" height="50" />
               <span>C</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++" loading="lazy" width="50" height="50" />
               <span>C++</span>
             </div>
           </div>
@@ -495,121 +512,115 @@
           <h4>🤖 AI/ML</h4>
           <div class="tech-stack-icons">
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" loading="lazy" width="50" height="50" />
               <span>TensorFlow</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" loading="lazy" width="50" height="50" />
               <span>PyTorch</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" loading="lazy" width="50" height="50" />
               <span>Pandas</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" loading="lazy" width="50" height="50" />
               <span>NumPy</span>
             </div>
             <div class="tech-icon">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn" />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn" loading="lazy" width="50" height="50" />
               <span>Scikit-learn</span>
             </div>
             <div class="tech-icon">
-              <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="Seaborn" />
+              <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="Seaborn" loading="lazy" width="50" height="50" />
               <span>Seaborn</span>
             </div>
           </div>
         </div>
 
-
         <div class="tech-stack-group">
           <h4>🛠️ Tools</h4>
           <div class="tech-stack-icons">
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" loading="lazy" width="50" height="50" />
               <span>Git</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" loading="lazy" width="50" height="50" />
               <span>GitHub</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy" width="50" height="50" />
               <span>VS Code</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" loading="lazy" width="50" height="50" />
               <span>Figma</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter" loading="lazy" width="50" height="50" />
               <span>Jupyter</span>
             </div>
           </div>
         </div>
 
-
         <div class="tech-stack-group">
           <h4>🗄️ Database</h4>
           <div class="tech-stack-icons">
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" loading="lazy" width="50" height="50" />
               <span>MongoDB</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" loading="lazy" width="50" height="50" />
               <span>PostgreSQL</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" loading="lazy" width="50" height="50" />
               <span>MySQL</span>
             </div>
           </div>
         </div>
 
-
         <div class="tech-stack-group">
           <h4>🤖 AI/ML Integration</h4>
           <div class="tech-stack-icons">
-            <!-- LangChain -->
             <div class="tech-icon">
-              <img src="https://python.langchain.com/img/brand/wordmark.png" alt="LangChain" />
+              <img src="https://python.langchain.com/img/brand/wordmark.png" alt="LangChain" loading="lazy" width="50" height="50" />
               <span>LangChain</span>
             </div>
             <div class="tech-icon">
-              <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" />
+              <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" loading="lazy" width="50" height="50" />
               <span>Hugging Face</span>
             </div>
             <div class="tech-icon">
-              <img src="https://avatars.githubusercontent.com/u/151674099?s=200&v=4" alt="Ollama" />
+              <img src="https://avatars.githubusercontent.com/u/151674099?s=200&v=4" alt="Ollama" loading="lazy" width="50" height="50" />
               <span>Ollama</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" loading="lazy" width="50" height="50" />
               <span>PyTorch</span>
             </div>
             <div class="tech-icon">
-              <img src="https://opencv.org/wp-content/uploads/2022/05/logo.png" alt="OpenCV" />
+              <img src="https://opencv.org/wp-content/uploads/2022/05/logo.png" alt="OpenCV" loading="lazy" width="50" height="50" />
               <span>OpenCV</span>
             </div>
           </div>
         </div>
 
-
-
         <div class="tech-stack-group">
           <h4>☁️ Cloud & DevOps</h4>
           <div class="tech-stack-icons">
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" loading="lazy" width="50" height="50" />
               <span>Docker</span>
             </div>
             <div class="tech-icon">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" loading="lazy" width="50" height="50" />
               <span>Kubernetes</span>
             </div>
             <div class="tech-icon">
-              <img src="images/AWS-logo.png" alt="AWS" />
+              <img src="images/AWS-logo.png" alt="AWS" loading="lazy" width="50" height="50" />
               <span>AWS</span>
             </div>
           </div>
@@ -621,54 +632,53 @@
     <section id="beyondcode" class="section">
       <h2>Beyond Code 🎨</h2>
       <p>
-        When I’m not debugging lines of code or diving into machine learning models, you’ll likely find me immersed in the world of creativity. I believe that the best ideas often come when we allow our minds to explore freely — outside the IDE.
+        When I'm not debugging lines of code or diving into machine learning models, you'll likely find me immersed in the world of creativity. I believe that the best ideas often come when we allow our minds to explore freely — outside the IDE.
       </p>
 
       <div class="tech-stack-container">
         <div class="tech-stack-group">
           <h3>🖌️ Art & Sketching</h3>
-          <p>Check out my <a href="https://www.instagram.com/artsyrevati/" target="_blank">art page</a> where I share sketches, doodles, and experimental pieces. It’s a colorful diary of my thoughts and moods.</p>
+          <p>Check out my <a href="https://www.instagram.com/artsyrevati/" target="_blank" rel="noopener">art page</a> where I share sketches, doodles, and experimental pieces. It's a colorful diary of my thoughts and moods.</p>
         </div>
 
         <div class="tech-stack-group">
           <h3>📚 Notes & Writing</h3>
-          <p>I maintain detailed and aesthetic digital notes on tech and beyond. They're a mix of clarity and creativity — <a href="https://github.com/Revati-N/AI-Notes-DeepDive" target="_blank">see them on GitHub</a>.</p>
+          <p>I maintain detailed and aesthetic digital notes on tech and beyond. They're a mix of clarity and creativity — <a href="https://github.com/Revati-N/AI-Notes-DeepDive" target="_blank" rel="noopener">see them on GitHub</a>.</p>
         </div>
         
         <div class="tech-stack-group">
           <h3>🎸 Guitar</h3>
-          <p>I’ve been strumming and picking for a while now — it's my go-to escape and expression. Whether it’s acoustic melodies or digital loops, music keeps me grounded and inspired.</p>
+          <p>I've been strumming and picking for a while now — it's my go-to escape and expression. Whether it's acoustic melodies or digital loops, music keeps me grounded and inspired.</p>
         </div>
       </div>
     </section>
 
-
     <!-- Connect Section -->
     <section id="connect">
       <h2>Connect with Me</h2>
-      <div class = "about-content">
+      <div class="about-content">
         <div class="connect-text">
           <p>Let's chat! Reach me on:</p>
-            Gmail: <a href="mailto:revatisnatu@gmail.com" title="Email"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail Logo" width="32" height="32" style="vertical-align:middle;">revatisnatu@gmail.com </a><br/><br/>
-            GitHub: <a href="https://github.com/Revati-N/" target="_blank" title="GitHub"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="32" height="32" style="vertical-align:middle;">Revati-N</a><br/><br/>
-            Medium: <a href="https://medium.com/@revatisnatu" target="_blank" title="Medium"><img src="https://cdn.iconscout.com/icon/free/png-256/medium-47-433328.png" alt="Medium Logo" width="32" height="32" style="vertical-align:middle;">revatisnatu</a><br/><br/>
-            LinkedIn: <a href="https://linkedin.com/in/revatisnatu" target="_blank" title="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Logo" width="32" height="32" style="vertical-align:middle;">revati-natu</a>
+            Gmail: <a href="mailto:revatisnatu@gmail.com" title="Email"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" alt="Gmail Logo" width="32" height="32" loading="lazy" style="vertical-align:middle;">revatisnatu@gmail.com </a><br/><br/>
+            GitHub: <a href="https://github.com/Revati-N/" target="_blank" rel="noopener" title="GitHub"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="32" height="32" loading="lazy" style="vertical-align:middle;">Revati-N</a><br/><br/>
+            Medium: <a href="https://medium.com/@revatisnatu" target="_blank" rel="noopener" title="Medium"><img src="https://cdn.iconscout.com/icon/free/png-256/medium-47-433328.png" alt="Medium Logo" width="32" height="32" loading="lazy" style="vertical-align:middle;">revatisnatu</a><br/><br/>
+            LinkedIn: <a href="https://linkedin.com/in/revatisnatu" target="_blank" rel="noopener" title="LinkedIn"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Logo" width="32" height="32" loading="lazy" style="vertical-align:middle;">revati-natu</a>
         </div>
         <div class="about-cartoon">
-          <a href ="mailto:revatisnatu@gmail.com" title="Email">
-            <dotlottie-wc src="https://lottie.host/9ced6261-4a7a-4b68-a37d-04405c9c0fcf/DgX1Kp4DMu.lottie" 
-              style="width: 700px;height: 400px" 
-              speed="1" 
-              autoplay loop
-            >
-            </dotlottie-wc>
+          <a href="mailto:revatisnatu@gmail.com" title="Email">
+            <div class="lottie-container" data-lottie-src="https://lottie.host/9ced6261-4a7a-4b68-a37d-04405c9c0fcf/DgX1Kp4DMu.lottie"></div>
           </a>
         </div>
       </div>
     </section>
   </div>
+  
+  <!-- Load Lottie library with defer -->
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module" defer></script>
+  
   <script>
-    // Sidebar toggle
+    // Optimized sidebar toggle with debouncing
+    let resizeTimeout;
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('collapsed');
     }
@@ -680,16 +690,60 @@
       });
     });
     
-    // Ensure main margin works after sidebar toggle
+    // Optimized ResizeObserver with throttling
     const sidebar = document.getElementById('sidebar');
     const main = document.getElementById('main');
-    new ResizeObserver(() => {
+    
+    function updateMainMargin() {
       if (sidebar.classList.contains('collapsed')) {
         main.style.marginLeft = 'var(--side-min)';
       } else {
         main.style.marginLeft = 'var(--side-width)';
       }
-    }).observe(sidebar);
+    }
+    
+    const resizeObserver = new ResizeObserver(() => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateMainMargin, 100);
+    });
+    resizeObserver.observe(sidebar);
+    
+    // Lazy load Lottie animations with Intersection Observer
+    function initLottieAnimations() {
+      const lottieContainers = document.querySelectorAll('.lottie-container');
+      
+      const lottieObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.hasAttribute('data-loaded')) {
+            const src = entry.target.getAttribute('data-lottie-src');
+            const lottie = document.createElement('dotlottie-wc');
+            lottie.setAttribute('src', src);
+            lottie.setAttribute('speed', '1');
+            lottie.setAttribute('autoplay', '');
+            lottie.setAttribute('loop', '');
+            lottie.style.width = entry.target.closest('.about-cartoon') ? '450px' : '700px';
+            lottie.style.height = entry.target.closest('.about-cartoon') ? '300px' : '400px';
+            
+            entry.target.appendChild(lottie);
+            entry.target.setAttribute('data-loaded', 'true');
+            lottieObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        rootMargin: '50px' // Start loading 50px before element comes into view
+      });
+      
+      lottieContainers.forEach(container => {
+        lottieObserver.observe(container);
+      });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLottieAnimations);
+    } else {
+      initLottieAnimations();
+    }
   </script>
 </body>
 </html>
