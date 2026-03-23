@@ -73,6 +73,48 @@
     opacity: 0.4;
   }
 
+  #loader {
+  position: fixed;
+  inset: 0;
+    background: var(--ink);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transition: opacity 0.8s ease, visibility 0.6s ease;
+  }
+  #loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .loader-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clay);
+    opacity: 0;
+    animation: fadeUp 0.2s 1.5s forwards;
+  }
+  .loader-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+  .loader-line {
+    width: 0px;
+    height: 1px;
+    background: var(--clay);
+    animation: loaderExpand 2s ease forwards;
+  }
+  @keyframes loaderExpand {
+    to { width: 200px; }
+  }
+
   /* NAV */
  
   nav {
@@ -881,6 +923,12 @@
 </head>
 <body>
 
+<div id="loader">
+  <p class="loader-name">Revati Natu</p>
+  <div class="loader-line"></div>
+  <p class="loader-tag">AI Researcher · Builder · Forever Learner</p>
+</div>
+
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -1219,7 +1267,7 @@
   <div class="exp-timeline">
 
     <div class="exp-item">
-      <p class="exp-date">2024 – Present</p>
+      <p class="exp-date">Jan 2026 – Present</p>
       <h3 class="exp-title">AI Intern</h3>
       <p class="exp-org">Jio Creative Labs · Reliance Jio · Mumbai</p>
       <ul class="exp-bullets">
@@ -1469,13 +1517,6 @@
     card.style.transitionDelay = (i * 0.08) + 's';
   });
 
-  // KONAMI CODE EASTER EGG
-  const konamiSequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
-  let konamiIndex = 0;
-  const overlay = document.getElementById('konamiOverlay');
-  const hint = document.getElementById('eggHint');
-  const stars = document.getElementById('konamiStars');
-
   // Show hint after 10s idle
   setTimeout(() => { hint.classList.add('show'); setTimeout(() => hint.classList.remove('show'), 4000); }, 10000);
 
@@ -1530,7 +1571,13 @@
     }
     requestAnimationFrame(step);
   }
-  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); };
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('hidden');
+    }, 2000);
+  });
+  
 </script>
 </body>
 </html>
