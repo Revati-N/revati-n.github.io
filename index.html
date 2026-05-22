@@ -13,9 +13,9 @@
 :root {
   --sky:        #7EC8E3;
   --sky-deep:   #4A9BB5;
-  --grass:      #47803b;
-  --grass-dark: #35702d;
-  --grass-light:#7DC96A;
+  --grass:      #377d29;
+  --grass-dark: #23581c;
+  --grass-light:#528a44;
   --sand:       #D4B483;
   --sand-dark:  #B8975A;
   --water:      #1e6ea0;
@@ -917,7 +917,13 @@ function makeSpriteGuard() {
     [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '],
   ];
 }
-
+const SPRITE_IMGS = {
+  spiderman: 'sprites/spiderman.png',
+  ironman: 'sprites/ironman.png',
+  hermione: 'sprites/hermione.png',
+  // add more here — key must match sprite: field in NPCS
+  // e.g. link: 'sprites/link.png',
+};
 // Pre-build sprite data
 const SPRITE_DATA = {
   link:      makeSpriteLink(),
@@ -991,24 +997,24 @@ const SPRITE_DATA = {
 // ============================================================
 
 function makeSpriteSpiderMan() {
-  const R='#C0392B', B='#2C3E8C', W='#FFFFFF', E='#1A1A1A', bl='#1A1A60', sk='#F5CBA7';
+  const R='#CC0000', B='#2233CC', K='#000000', W='#FFFFFF', _=' ';
   return [
-    [' ',' ',' ',' ',R,R,R,R,R,R,R,' ',' ',' ',' ',' '],
-    [' ',' ',' ',R,R,W,W,W,W,W,R,R,' ',' ',' ',' '],
-    [' ',' ',R,R,W,E,W,W,W,E,W,R,R,' ',' ',' '],
-    [' ',' ',R,W,W,W,W,W,W,W,W,W,R,' ',' ',' '],
-    [' ',' ',R,W,W,W,R,W,R,W,W,W,R,' ',' ',' '],
-    [' ',' ',' ',R,W,W,R,R,R,W,W,R,' ',' ',' ',' '],
-    [' ',' ',' ',' ',R,R,R,R,R,R,R,' ',' ',' ',' ',' '],
-    [' ',' ',B,B,R,R,R,R,R,R,B,B,' ',' ',' ',' '],
-    [' ',B,B,B,R,R,R,R,R,R,B,B,B,' ',' ',' '],
-    [' ',B,B,B,R,R,R,R,R,R,B,B,B,' ',' ',' '],
-    [' ',' ',B,B,R,R,R,R,R,R,B,B,' ',' ',' ',' '],
-    [' ',' ',' ',B,B,' ',' ',' ',' ',B,B,' ',' ',' ',' ',' '],
-    [' ',' ',' ',B,B,' ',' ',' ',' ',B,B,' ',' ',' ',' ',' '],
-    [' ',' ',' ',B,bl,' ',' ',' ',' ',bl,B,' ',' ',' ',' ',' '],
-    [' ',' ',' ',R,R,' ',' ',' ',' ',R,R,' ',' ',' ',' ',' '],
-    [' ',' ',' ',R,R,' ',' ',' ',' ',R,R,' ',' ',' ',' ',' '],
+    [_,_,_,K,K,K,K,K,K,K,K,K,K,_,_,_],  // row 0
+    [_,_,K,R,R,R,K,R,R,K,R,R,R,K,_,_],  // row 1
+    [_,K,R,R,K,W,W,K,K,W,W,K,R,R,K,_],  // row 2
+    [_,K,R,R,W,W,W,K,K,W,W,W,R,R,K,_],  // row 3
+    [_,K,R,R,K,W,K,R,R,K,W,K,R,R,K,_],  // row 4
+    [_,K,R,R,R,K,R,R,R,R,K,R,R,R,K,_],  // row 5
+    [_,_,K,R,R,R,R,R,R,R,R,R,R,K,_,_],  // row 6
+    [_,K,R,R,R,R,R,R,R,R,R,R,R,R,K,_],  // row 7
+    [K,R,R,K,R,K,K,K,K,K,K,R,K,R,R,K],  // row 8
+    [K,B,B,K,R,R,R,K,K,R,R,R,K,B,B,K],  // row 9
+    [K,R,R,K,B,B,B,K,K,B,B,B,K,R,R,K],  // row 10
+    [K,R,R,R,K,B,B,K,K,B,B,K,R,R,R,K],  // row 11
+    [K,K,R,R,K,B,B,K,K,B,B,K,R,R,K,K],  // row 12
+    [_,_,K,R,R,K,K,_,_,K,K,R,R,K,_,_],  // row 13
+    [_,_,K,R,R,K,_,_,_,_,K,R,R,K,_,_],  // row 14
+    [_,_,_,K,K,K,_,_,_,_,K,K,K,_,_,_],  // row 15
   ];
 }
 
@@ -1158,6 +1164,16 @@ const G = (() => {
   }
 
   // ── SPRITE DRAWING ────────────────────────────────────
+const IMAGE_CACHE = {};
+function loadImage(src) {
+  if (!IMAGE_CACHE[src]) {
+    const img = new Image();
+    img.src = src;
+    IMAGE_CACHE[src] = img;
+  }
+  return IMAGE_CACHE[src];
+}
+
   function drawSprite(ctx, spriteData, px, py, ts) {
     const scale = ts / 16;
     for (let row = 0; row < 16; row++) {
@@ -1275,9 +1291,14 @@ const G = (() => {
       const sx = Math.floor(npc.px - camX);
       const sy = Math.floor(npc.py - camY);
       if (sx < -SPRITE_SIZE*2 || sx > W+SPRITE_SIZE || sy < -SPRITE_SIZE*2 || sy > H_px+SPRITE_SIZE) continue;
-      const spr = SPRITE_DATA[npc.sprite] || SPRITE_DATA.villager1;
-      // Draw sprite so bottom aligns with tile bottom
-      drawSprite(ctx, spr, sx - TILE/2, sy - SPRITE_SIZE + TILE, SPRITE_SIZE);
+      if (SPRITE_IMGS[npc.sprite]) {
+        const img = loadImage(SPRITE_IMGS[npc.sprite]);
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(img, sx - TILE/2, sy - SPRITE_SIZE + TILE, SPRITE_SIZE, SPRITE_SIZE);
+      } else {
+        const spr = SPRITE_DATA[npc.sprite] || SPRITE_DATA.villager1;
+        drawSprite(ctx, spr, sx - TILE/2, sy - SPRITE_SIZE + TILE, SPRITE_SIZE);
+      }
 
       // Name tag
       ctx.font = '14px VT323';
