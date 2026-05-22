@@ -921,6 +921,9 @@ const SPRITE_IMGS = {
   spiderman: 'sprites/spiderman.png',
   ironman: 'sprites/ironman.png',
   hermione: 'sprites/hermione.png',
+  link: 'sprites/link.png',
+  charmander: 'sprites/charmander.png',
+  guard: 'sprites/guard.png',
   // add more here — key must match sprite: field in NPCS
   // e.g. link: 'sprites/link.png',
 };
@@ -932,7 +935,7 @@ const SPRITE_DATA = {
   bts:       makeSpriteVillager(),
   guard:     makeSpriteGuard(),
   villager1: makeSpriteVillager(),
-  villager2: makeSpriteVillager(),
+  charmander: makeSpriteVillager(),
   spiderman: makeSpriteSpiderMan(),
   // ↑ ADD NEW SPRITE KEYS HERE — must match the sprite: field in NPCS
 };
@@ -1028,7 +1031,7 @@ const NPCS = [
   { id:'bts',       sprite:'bts',       x:36, y:45, name:'BTS Member',  dialog:'The idol stops mid-practice. "Your work has rhythm — every project a new verse."' },
   { id:'guard',     sprite:'guard',     x:13, y:39, name:'Guard',       dialog:'The guard salutes. "The Workshop is open. Great inventors have walked these halls."' },
   { id:'spidey',    sprite:'spiderman', x:53, y:37, name:'Spider-Man',  dialog:'"With great power comes great responsibility." He gives you a thumbs-up.' },
-  { id:'v2',        sprite:'villager2', x:42, y:15, name:'Traveller',   dialog:'"I am heading to the Castle. The experience you gain there is unlike anything."' },
+  { id:'char',        sprite:'charmander', x:42, y:15, name:'Charmander',   dialog:'"I am heading to the Castle. The experience you gain there is unlike anything."' },
   // ↑ ADD NEW CHARACTERS HERE — see the HOW TO ADD NEW CHARACTERS guide above
 ];
 
