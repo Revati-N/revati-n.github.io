@@ -780,6 +780,7 @@ const ZONES = [
 // Each sprite = 16x16 array of color strings (' ' = transparent)
 // You can replace these with your own PNG sprites by drawing images instead
 
+
 function makeSpriteLink() {
   // Link from Zelda (simplified, green tunic)
   const G = '#3A7A2A', S = '#E8D090', B = '#3030A0', E = '#202020',
@@ -924,6 +925,8 @@ const SPRITE_IMGS = {
   link: 'sprites/link.png',
   charmander: 'sprites/charmander.png',
   guard: 'sprites/guard.png',
+  rm: 'sprites/rm.png',
+  main: 'sprites/main.png',
   // add more here — key must match sprite: field in NPCS
   // e.g. link: 'sprites/link.png',
 };
@@ -1025,13 +1028,13 @@ function makeSpriteSpiderMan() {
 //  NPCS
 // ============================================================
 const NPCS = [
-  { id:'link',      sprite:'link',      x:14, y:22, name:'Link',        dialog:'The hero of Hyrule wanders here. He nods at you — a fellow adventurer.' },
-  { id:'iron',      sprite:'ironman',   x:60, y:11, name:'Iron Man',    dialog:'Tony Stark: "JARVIS just told me about your research. Impressive, kid."' },
-  { id:'hermione',  sprite:'hermione',  x:38, y:7,  name:'Hermione',    dialog:'"I\'ve read every scroll in this library. Your projects remind me of transfiguration — changing one thing into another."' },
-  { id:'bts',       sprite:'bts',       x:36, y:45, name:'BTS Member',  dialog:'The idol stops mid-practice. "Your work has rhythm — every project a new verse."' },
-  { id:'guard',     sprite:'guard',     x:13, y:39, name:'Guard',       dialog:'The guard salutes. "The Workshop is open. Great inventors have walked these halls."' },
-  { id:'spidey',    sprite:'spiderman', x:53, y:37, name:'Spider-Man',  dialog:'"With great power comes great responsibility." He gives you a thumbs-up.' },
-  { id:'char',        sprite:'charmander', x:42, y:15, name:'Charmander',   dialog:'"I am heading to the Castle. The experience you gain there is unlike anything."' },
+  { id:'link',      sprite:'link',      x:14, y:22, name:'Link',        dialog:'The hero of Hyrule wanders here. — a fellow adventurer alongside you.' },
+  { id:'iron',      sprite:'ironman',   x:60, y:11, name:'Iron Man',    dialog:'Tony Stark: "JARVIS asks you to explore my research."' },
+  { id:'hermione',  sprite:'hermione',  x:38, y:7,  name:'Hermione',    dialog:'"Everything worth knowing came from actually doing the thing, not just reading about it." \n "And I say that as someone who read absolutely everything first." \n "The Castle holds every experience that shaped this journey. It\'s worth your time." \n"Go. I\'ll be here judging your posture.' },
+  { id:'bts',       sprite:'rm',       x:36, y:45, name:'Rap Monster',  dialog:'"You know what nobody tells you about leading? It\'s mostly just showing up first." \n "The Town Square is full of stories about exactly that." \n "Community, stage, purpose — it all started with one person deciding to begin." \n "보라해. Now go look around."' },
+  { id:'guard',     sprite:'guard',     x:13, y:39, name:'Guard',       dialog:'"I\'m not supposed to chat on duty but — have you seen what\'s in that Workshop?" \n "Things built from scratch. Like, genuinely from nothing." \n "Every project in there started as a bad idea that refused to stay bad." \n "Go in. Don\'t tell my captain I was talking."' },
+  { id:'spidey',    sprite:'spiderman', x:53, y:37, name:'Spider-Man',  dialog:'"With great power comes great responsibility." \n"Okay so real talk — I learned everything by just doing it. No mentor, no manual." \n "Every skill in that Dojo? Someone practised it until it stopped being scary." \n "You should go in. Seriously. The web-slinging alone took me like forty attempts." \n "And yes, I\'m counting the attempts where I fell."' },
+  { id:'char',        sprite:'charmander', x:42, y:15, name:'Charmander',   dialog:'"Char Char"' },
   // ↑ ADD NEW CHARACTERS HERE — see the HOW TO ADD NEW CHARACTERS guide above
 ];
 
@@ -1059,7 +1062,7 @@ const G = (() => {
   };
 
   // Player sprite (Link-style but lighter)
-  const PSPRITE = makeSpriteLink();
+  const PSPRITE = null;
 
   // Build world tile map
   const worldMap = buildWorld();
@@ -1314,8 +1317,9 @@ function loadImage(src) {
     // Player — also 2× size
     const psx = Math.floor(player.x - camX);
     const psy = Math.floor(player.y - camY);
-    drawSprite(ctx, PSPRITE, psx - TILE/2, psy - SPRITE_SIZE + TILE, SPRITE_SIZE);
-
+    const playerImg = loadImage('sprites/main.png');
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(playerImg, psx - TILE/2, psy - SPRITE_SIZE + TILE, SPRITE_SIZE, SPRITE_SIZE);
     // "YOU" label above player
     ctx.fillStyle = '#F0C040';
     ctx.textAlign = 'center';
@@ -1518,7 +1522,9 @@ function loadImage(src) {
     document.getElementById('panel-title').textContent = npc.name.toUpperCase();
     document.getElementById('panel-subtitle').textContent = '— says —';
     document.getElementById('panel-body').innerHTML =
-      `<div class="pane-section"><p style="font-style:italic;font-size:17px;color:var(--shrine)">${npc.dialog}</p></div>`;
+  `<div class="pane-section">${npc.dialog.split('\n').map(line => 
+    `<p style="font-style:italic;font-size:17px;color:var(--shrine);margin-bottom:12px">${line}</p>`
+  ).join('')}</div>`;
     openPanel();
   }
 
